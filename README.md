@@ -8,25 +8,25 @@ Whether you have just moved out to go to college, just gotten married, or whatev
 ![PrioriTask](/PrioriTaskDesign.jpg)
 
 ### Technologies
-- **HTML** 
+- **HTML:** 
 Appropriate and correct HTML structure to display organization of application, boxed in tasks and adaptable task list size.
-- **CSS**
+- **CSS:**
 Accessible to multiple devices, uses multiple colors that are cohesive to show good design, each task has same layout and correct spaces in between each sublist.
-- **JavaScript**
+- **JavaScript:**
 Login capability, task order, shows other group members tasks and priority
-- **React** 
+- **React:** 
 Application that allows users to use multiple check boxes to add priority, other check boxes to mark task as done and delete from interface, active login and submit actions
-- **Web Service**
+- **Web Service:**
 I will use backend for
     - submitting tasks and their priority
     - retrieving added tasks 
     - displaying who added specific task
     use a motivational quote API to encourage them to do tasks. [Motivational Quote API](https://forismatic.com/en/api/).
-- **Authentication**
+- **Authentication:**
 User login/register in order to store name to show who has added the task.
 - **Database data:**
 As users submit names it will store that info, stores who added each task, cannot see or complete any of the tasks unless logged in.
-- **WebSocket data**
+- **WebSocket data:**
 As users submit tasks and their priority level, these tasks are shown to all users
 
 ### Key Features
