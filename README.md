@@ -17,7 +17,7 @@ Login capability, task order, shows other group members tasks and priority
 - **React:** 
 Application that allows users to use multiple check boxes to add priority, other check boxes to mark task as done and delete from interface, active login and submit actions
 - **Web Service:**
-I will use backend for
+I will use backend for -
     - submitting tasks and their priority
     - retrieving added tasks 
     - displaying who added specific task
