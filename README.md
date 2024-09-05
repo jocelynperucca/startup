@@ -21,7 +21,7 @@ I will use backend for -
     - submitting tasks and their priority
     - retrieving added tasks 
     - displaying who added specific task
-    use a motivational quote API to encourage them to do tasks. [Motivational Quote API](https://forismatic.com/en/api/).
+    - use a motivational quote API to encourage them to do tasks. [Motivational Quote API](https://forismatic.com/en/api/).
 - **Authentication:**
 User login/register in order to store name to show who has added the task.
 - **Database data:**
