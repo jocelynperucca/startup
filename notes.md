@@ -12,3 +12,6 @@ Caddy handeles all of the creation and rotation fo web certificates so that we c
     - This contatins the definitions for routing HTTP requests. to determine the location where static HTML files are loaded from and proxy requests. You shouldn't have to modify it
 - HTML files ~/pulblic_html
     - This is the directory of files that Caddy serves up when reuqests are made to the root or your web server. It will look for the file in your directory.
+## HTTPS and TLS
+HTTPS stands for Secure Hypertext TRansport Protocol. TLS is sometimes called SSL.
+- the -v parameter shows the verbose output of the HTTPS exchange. The > /dev/null redirection throws away the actual HTTP response, since we only care about the negotiation, by redirecting the output to the null device.
