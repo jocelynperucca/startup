@@ -7,7 +7,7 @@ See [README](README.md)
 - In order to ssh into my portal I need to remember this command
 ➜  ssh -i [key pair file] ubuntu@[ip address] in which my key pair is stored in my CS 260 folder
 ## Caddy
-Caddy handeles all of the creation and rotation fo web certificates so that we can easily support HTTPS
+Caddy handles all of the creation and rotation of web certificates so that we can easily support HTTPS
 - Configuration file : ~/Caddyfile
     - This contatins the definitions for routing HTTP requests. to determine the location where static HTML files are loaded from and proxy requests. You shouldn't have to modify it
 - HTML files ~/pulblic_html
@@ -15,3 +15,4 @@ Caddy handeles all of the creation and rotation fo web certificates so that we c
 ## HTTPS and TLS
 HTTPS stands for Secure Hypertext TRansport Protocol. TLS is sometimes called SSL.
 - the -v parameter shows the verbose output of the HTTPS exchange. The > /dev/null redirection throws away the actual HTTP response, since we only care about the negotiation, by redirecting the output to the null device.
+- HTTPS normally runs on 433 while HTTP is one 80. TCP does flow control and makes the connection reliable
