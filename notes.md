@@ -16,3 +16,7 @@ Caddy handles all of the creation and rotation of web certificates so that we ca
 HTTPS stands for Secure Hypertext TRansport Protocol. TLS is sometimes called SSL.
 - the -v parameter shows the verbose output of the HTTPS exchange. The > /dev/null redirection throws away the actual HTTP response, since we only care about the negotiation, by redirecting the output to the null device.
 - HTTPS normally runs on 433 while HTTP is one 80. TCP does flow control and makes the connection reliable
+## HTML
+- You always want to call your top level **"index.html"**.
+- There are 3 levels, Header, Body/Content, and Footer. **Make sure to include in your FOOTER a link to your github repository.**
+- Use the deployment script after you've done al you want with your key, server, and name of files in order to get it to your actual server you made. It will be different for each technology.
