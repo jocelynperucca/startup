@@ -20,3 +20,4 @@ HTTPS stands for Secure Hypertext TRansport Protocol. TLS is sometimes called SS
 - You always want to call your top level **"index.html"**.
 - There are 3 levels, Header, Body/Content, and Footer. **Make sure to include in your FOOTER a link to your github repository.**
 - Use the deployment script after you've done al you want with your key, server, and name of files in order to get it to your actual server you made. It will be different for each technology.
+- ./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon
