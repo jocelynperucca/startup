@@ -23,7 +23,7 @@ HTTPS stands for Secure Hypertext TRansport Protocol. TLS is sometimes called SS
 - ./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon
 ## CSS
 Cascading Style Sheets change sections of HTML for stylistic measures. It defines rules for certain selectors. </br>
-![CSS](/cssDefinitions.jpg)
+![CSS](/cssDefinitions.jpg) </br>
 You can do css for sections like:
 - p
 - header
@@ -46,9 +46,9 @@ Some things you might change are:
 - and many others
 
 You can also do Animations! Depends on the animation name but you would do somethiong like: <animation-name: demo;animation-duration: 3s;>
-- @Keyframes are for key points and then CSS will do smooth transitions. For example:
+- @Keyframes are for key points and then CSS will do smooth transitions. For example: </br>
 
-    - < @keyframes demo {
+< @keyframes demo {
   from {
     font-size: 0vh;
   }
