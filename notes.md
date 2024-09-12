@@ -21,3 +21,42 @@ HTTPS stands for Secure Hypertext TRansport Protocol. TLS is sometimes called SS
 - There are 3 levels, Header, Body/Content, and Footer. **Make sure to include in your FOOTER a link to your github repository.**
 - Use the deployment script after you've done al you want with your key, server, and name of files in order to get it to your actual server you made. It will be different for each technology.
 - ./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon
+## CSS
+Cascading Style Sheets change sections of HTML for stylistic measures. It defines rules for certain selectors.
+![CSS](/cssDefinitions.jpg)
+You can do css for sections like:
+- p
+- header
+- li
+- h2
+- td
+- classes like
+    - #table (whatever class you assign it.)
+    - <section class="fly-in">
+
+Some things you might change are:
+- background-color
+- width or height
+- list-style
+- color (can be used with keywords, or RGB hex/function, or hsl if you're wanting crazy hue saturation and light)
+- text-align
+- border
+- padding (usually followed by **1em**)
+- font-size (many different units of measurement for that) You can also import fonts from other websites.
+- and many others
+
+You can also do Animations! Depends on the animation name but you would do somethiong like: <animation-name: demo;animation-duration: 3s;>
+- @Keyframes are for key points and then CSS will do smooth transitions. For example:
+< @keyframes demo {
+  from {
+    font-size: 0vh;
+  }
+
+  95% {
+    font-size: 21vh;
+  }
+
+  to {
+    font-size: 20vh;
+  }
+} >
