@@ -22,7 +22,7 @@ HTTPS stands for Secure Hypertext TRansport Protocol. TLS is sometimes called SS
 - Use the deployment script after you've done al you want with your key, server, and name of files in order to get it to your actual server you made. It will be different for each technology.
 - ./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s simon
 ## CSS
-Cascading Style Sheets change sections of HTML for stylistic measures. It defines rules for certain selectors.
+Cascading Style Sheets change sections of HTML for stylistic measures. It defines rules for certain selectors. </br>
 ![CSS](/cssDefinitions.jpg)
 You can do css for sections like:
 - p
@@ -32,7 +32,7 @@ You can do css for sections like:
 - td
 - classes like
     - #table (whatever class you assign it.)
-    - <section class="fly-in">
+    - section class="fly-in"
 
 Some things you might change are:
 - background-color
@@ -47,7 +47,8 @@ Some things you might change are:
 
 You can also do Animations! Depends on the animation name but you would do somethiong like: <animation-name: demo;animation-duration: 3s;>
 - @Keyframes are for key points and then CSS will do smooth transitions. For example:
-< @keyframes demo {
+
+    - < @keyframes demo {
   from {
     font-size: 0vh;
   }
