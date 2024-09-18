@@ -51,7 +51,7 @@ For this deliverable I made the structure of my Prioritask application using HTM
 - [x] **Images** - The Prioritask logo is inputted in each .html header.
 - [x] **Database** - on taskList.html, there is a table that shows previous couple tasks that have been done that will be stored in the database when marked done.
 - [x] **Websocket** - Table also in taskList.html that shows current task, person who added it, priority, and checkbox to mark as done. This will be updated for all users as each user adds a task.
-- [x] **Login** - Login placeholder in index.html including password placeholder as well.
+- [x] **Login** - Login placeholder in index.html including password placeholder as well. DIsplays user name placeholder on addTask.html above add task box and while viewing task list on taskList.html.
 - [x] **API** - There is an API placeholder in motivation.html where the motivational quote is. When implemented, it will randolmyl generate a motivational quote from "Motivational Quote" API.
 
 
