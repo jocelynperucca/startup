@@ -38,5 +38,21 @@ As users submit tasks and their priority level, these tasks are shown to all use
 - Allows authenticated user to mark any task as done
 
 
+## HTML Deliverable
+For this deliverable I made the structure of my Prioritask application using HTML.
+
+- [x] **HTML pages for each component** 
+    - ***index.html*** for the homepage/login for authentication and storage of user name to put in the task. 
+    - ***addTask.html***  to include react and alow interactive buttons for the user. The add button is placed and will be used to store the data before using a websocket to show that specific task on the task list. Priority radio buttons to allow priority to be stored when adding a task were implemented.
+    - ***taskList.html*** - shows database and websocket placeholders.
+    - ***motivation.html*** - Uses API and explains application more.
+- [x] **Links** - When you press log in, it will autodirect you to addTask.html. Page also includes a header on each page with navigatioun capabilities to each of the html files
+- [x] **Text** - Each of the tasks and it's priorities are represented in a text table. The priority list is also represented by text (High, Medium, Low).
+- [x] **Images** - The Prioritask logo is inputted in each .html header.
+- [x] **Database** - on taskList.html, there is a table that shows previous couple tasks that have been done that will be stored in the database when marked done.
+- [x] **Websocket** - Table also in taskList.html that shows current task, person who added it, priority, and checkbox to mark as done. This will be updated for all users as each user adds a task.
+- [x] **Login** - Login placeholder in index.html including password placeholder as well.
+- [x] **API** - There is an API placeholder in motivation.html where the motivational quote is. When implemented, it will randolmyl generate a motivational quote from "Motivational Quote" API.
+
 
 
