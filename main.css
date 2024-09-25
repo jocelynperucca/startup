@@ -1,13 +1,14 @@
 header {
-    background-color: cornflowerblue;
+    background-color:white;
 }
 
 footer {
-    background-color: cornflowerblue;
+    background-color:grey;
 }
 
 li {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
 }
 
 .menu
@@ -15,4 +16,7 @@ li {
     font-style: italic;
 }
 
-body {background-color: coral;}
+body {
+    background-color:white;
+}
+
