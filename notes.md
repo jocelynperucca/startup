@@ -61,3 +61,6 @@ You can also do Animations! Depends on the animation name but you would do somet
     font-size: 20vh;
   }
 } >
+## SIMON CSS
+I cloned the Simon-CSS to my repository using my pem key. I learned that with simple css changes such as to the header and footer to make the design of a webpage look put together. Padding commands are also important.
+- Flex features are important for  when the size changes. I need to make sure to add those to ensureit stays in form when moved around.
