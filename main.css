@@ -1,0 +1,18 @@
+header {
+    background-color: cornflowerblue;
+}
+
+footer {
+    background-color: cornflowerblue;
+}
+
+li {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.menu
+ {
+    font-style: italic;
+}
+
+body {background-color: coral;}
