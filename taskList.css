@@ -4,8 +4,8 @@ footer {
     bottom: 0;
     width: 100%;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    float: right;
-    padding: 0;
+    text-align: center;
+    vertical-align: center;
 
           
 }
@@ -20,8 +20,10 @@ li {
 
 menu
  {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    align-items: baseline;
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space items evenly */
+    align-items: baseline; /* Align items */
+    padding: .5em;
 }
 
 body {
@@ -42,6 +44,7 @@ table {
     border: 2px solid hsl(48, 42%, 50%); /* Adjust the thickness and color as needed */
     border-collapse: collapse;
     margin-bottom: 40px;
+    vertical-align: center;
      /* Optional: This makes sure the borders of the table and cells don't overlap */
   }
   
@@ -87,9 +90,10 @@ table {
 
 img {
     display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
+    margin-left: auto;
+     margin-right: auto;
+    max-width: 100%; /* Allow image to scale */
+    height: auto;
 }
 
 
@@ -105,3 +109,28 @@ a:link {
   a:active { 
     text-decoration: none; 
   }
+
+
+  @media (max-width: 768px) {
+    footer {
+        flex-direction: column; /* Stack footer items vertically on small screens */
+    }
+
+    img {
+        width: 80%; /* Increase image width on smaller screens */
+    }
+
+    table {
+        font-size: 0.9em; /* Slightly smaller font size for tables on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    li {
+        font-size: 0.8em; /* Slightly smaller font size for list items */
+    }
+
+    button {
+        font-size: 0.8em; /* Slightly smaller font size for buttons */
+    }
+}
