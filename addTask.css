@@ -63,7 +63,12 @@ div {
     
 }
 
-div label {
+label[for=addtask] {
+    font-style: italic;
+    text-decoration: none;
+}
+
+input {
     font-style: italic;
 }
 
