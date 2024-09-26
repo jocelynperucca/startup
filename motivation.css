@@ -64,3 +64,10 @@ a:link {
   a:active { 
     text-decoration: none; 
   }
+
+  @media (max-width: 600px) {
+    footer {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;    /* Center content on small screens */
+    }
+}

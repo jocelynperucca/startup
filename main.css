@@ -9,6 +9,8 @@ footer {
     width: 100%;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     float: right;
+    text-align: center;
+    vertical-align: center;
 
           
 }
@@ -24,7 +26,10 @@ li {
 menu
  {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    align-items: baseline;
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space items evenly */
+    align-items: baseline; /* Align items */
+    padding: .5em; /* Add padding for better spacing */
 }
 
 h1 {
@@ -35,6 +40,7 @@ h1 {
 
 body {
     background-color:white;
+    margin: 0;
 }
 
 div {
@@ -56,9 +62,10 @@ button {
 
 img {
     display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%; /* Allow image to scale */
+    height: auto; /
 }
 
 
@@ -74,3 +81,29 @@ a:link {
   a:active { 
     text-decoration: none; 
   }
+
+
+  @media (max-width: 768px) {
+    footer {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items: center; /* Center content */
+    }
+
+    main {
+        padding: .5em; /* Reduce padding on smaller screens */
+    }
+
+    img {
+        width: 80%; /* Increase image width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    li {
+        font-size: 0.9em; /* Slightly smaller font size for smaller devices */
+    }
+
+    button {
+        font-size: 0.9em; /* Slightly smaller font size for buttons */
+    }
+}
