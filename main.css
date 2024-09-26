@@ -7,6 +7,8 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
           
 }
 
@@ -23,6 +25,12 @@ menu
     align-items: baseline;
 }
 
+h1 {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    align-items: baseline;
+
+}
+
 body {
     background-color:white;
 }
@@ -33,8 +41,13 @@ div {
 }
 
 main {
-    border: 5px dashed rgb(229, 229, 181);
+    border: 5px dashed hsl(48, 67%, 63%);
     padding: 1em;
 
 }
 
+button {
+    color: hsl(48, 42%, 50%);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
