@@ -35,6 +35,7 @@ body {
 
 div {
     font-weight: bold;
+    text-decoration: underline;
 }
 
 table {
@@ -52,6 +53,11 @@ table {
   table td {
     text-align: center;
     vertical-align: middle;
+  }
+
+  th {
+    background-color: lightblue;
+    color: rgb(0, 0, 0);
   }
   
 
