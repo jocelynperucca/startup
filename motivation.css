@@ -37,7 +37,11 @@ img {
 }
 
 
+div {
+    font-family: "Lucida Handwriting";
+    color:  hsl(48, 42%, 50%);
 
+}
 
 a:link { 
     text-decoration: none; 
