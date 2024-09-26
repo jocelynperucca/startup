@@ -57,6 +57,22 @@ label[for=priority3]
     color: green;
 }
 
+div {
+    font-weight: bold;
+    text-decoration: underline;
+    
+}
+
+div label {
+    font-style: italic;
+}
+
+button {
+    color: hsl(48, 42%, 50%);
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+
 
 
 a:link { 
