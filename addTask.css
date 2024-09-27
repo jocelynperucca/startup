@@ -67,6 +67,13 @@ div {
     font-weight: bold;
     text-decoration: underline;
     
+    
+}
+
+main {
+    flex-grow: 1; /* Ensure the main content takes up space, pushing the footer down */
+    padding: 1em;
+    box-sizing: border-box; /* Ensure padding is included in height calculations */
 }
 
 label[for=addtask] {
@@ -99,39 +106,4 @@ a:link {
     text-decoration: none; 
   }
 
-  @media (max-width: 768px) {
-    footer {
-        flex-direction: column; /* Stack footer items vertically on small screens */
-        padding: 1em;
-    }
-
-    img {
-        width: 80%; /* Increase image width on smaller screens */
-    }
-
-    li {
-        font-size: 0.9em; /* Slightly reduce font size for list items */
-    }
-
-    button {
-        font-size: 0.9em; /* Slightly reduce button font size */
-    }
-}
-
-@media (max-width: 480px) {
-    footer {
-        padding: 0.5em; /* Reduce padding for smaller screens */
-    }
-
-    img {
-        width: 70%; /* Further increase image width */
-    }
-
-    li {
-        font-size: 0.8em; /* Further reduce font size for list items */
-    }
-
-    button {
-        font-size: 0.8em; /* Further reduce button font size */
-    }
-}
+  
