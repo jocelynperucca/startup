@@ -25,11 +25,12 @@ li {
 menu
  {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Space items evenly */
-    align-items: baseline; /* Align items */
-    padding: .5em; /* Add padding for better spacing */
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-inline-end: .5em;
 }
+
 
 h1 {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
