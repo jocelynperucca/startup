@@ -108,4 +108,27 @@ a:link {
     text-decoration: none; 
   }
 
+
+  @media (max-width: 480px) {
+    li {
+        font-size: 0.8em; /* Slightly smaller font size for list items */
+    }
+
+    button {
+        font-size: 0.8em; /* Slightly smaller font size for buttons */
+    }
+}
+
+
+  @media (max-width: 480px) {
+    menu {
+        padding: 0.5em; /* Reduce padding further for small mobile screens */
+        font-size: 0.9em; /* Slightly reduce font size */
+    }
+
+    menu li {
+        padding: 0.5em 0; /* Adjust padding for a more compact look */
+    }
+}
+
   
