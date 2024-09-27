@@ -63,7 +63,7 @@ For this deliverable I designed and styled Prioritask and each of its pages.
 - [x] **Navigation elements** - I got rid of the underlines for all of the links and changed the font color to be more consistent with the prioritask logo colors. Changed menu layout across all pages to be window size responsive and now is horizontal across the page.
 - [x] **Responsive to window resizing** - All elements were made into flex elements to ensure that Prioritask looks good on all devices and will resize according to window size as well.
 - [x] **Application elements** - I used padding to ensure that each element has appropriate whitespace and will not clash with others. I also put in some borders to distinguish certain application elements (Login/register border - *index.html/main.css*, table borders and divider - *taskList.html/taskList.css*).
-- [x] **Application text content** - I made sure there are consistent fonts across all pages. Font colors match with logo colors and task priorities are either red, orange, or green depending on priority level on *addTask.html/.css* and taskList.html/.css. Added flourish font to Motivational Quote API placeholder on *motivational.html/.css*.
+- [x] **Application text content** - I made sure there are consistent fonts across all pages. Font colors match with logo colors and task priorities are either red, orange, or green depending on priority level on *addTask.html/.css* and *taskList.html/.css*. Added flourish font to Motivational Quote API placeholder on *motivational.html/.css*.
 - [x] **Application Images** - My application image is the Prioritask logo and is now centered on each page along with the added flex element so that it stays in the center no matter the window size or device.
 
 
