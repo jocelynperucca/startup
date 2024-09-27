@@ -20,6 +20,7 @@ li {
     list-style-type: square ;
     list-style: square blue;
     padding: .15em;
+    
 }
 
 menu
@@ -80,6 +81,10 @@ a:link {
   } 
   a:active { 
     text-decoration: none; 
+  }
+
+  a {
+    color: rgb(153, 195, 209);
   }
 
 

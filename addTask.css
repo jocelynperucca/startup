@@ -108,6 +108,10 @@ a:link {
     text-decoration: none; 
   }
 
+  a {
+    color: rgb(153, 195, 209);
+  }
+
 
   @media (max-width: 480px) {
     li {
