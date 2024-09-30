@@ -48,7 +48,7 @@ Some things you might change are:
 You can also do Animations! Depends on the animation name but you would do somethiong like: <animation-name: demo;animation-duration: 3s;>
 - @Keyframes are for key points and then CSS will do smooth transitions. For example: </br>
 
-You can also include bootstrap by just including: <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+You can also include bootstrap by just including: < link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" >
 
 It is used in HTML but is a style sheet that you can use any class found in BootStrap to make it look uniform and better without so much CSS code.
 
