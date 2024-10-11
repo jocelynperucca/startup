@@ -68,3 +68,12 @@ You can also include bootstrap by just including: < link rel="stylesheet" href="
 ## SIMON CSS
 I cloned the Simon-CSS to my repository using my pem key. I learned that with simple css changes such as to the header and footer to make the design of a webpage look put together. Padding commands are also important.
 - Flex features are important for  when the size changes. I need to make sure to add those to ensureit stays in form when moved around.
+## JAVASCRIPT
+- Async and Await:
+  - setTimeout allows a function to be called, grab the info, but return the result after a specified amount of time.
+  promise are only good for one go.
+  - `return new Promise((resolve, reject) => {`
+  - The `async` keyword declares that a function returns a promise. The `await` keyword wraps a call to the async function, blocks execution until the promise has resolved, and then returns the result of the promise.
+    - `console.log(await cow()); // OUTPUT: moo`
+  By combining async, to define functions that return promises, with await, to wait on the promise, you can create code that is asynchronous, but still maintains the flow of the code without explicitly using callbacks.
+  `const httpResponse = await fetch('https://simon.cs260.click/api/user/me');`
