@@ -77,3 +77,8 @@ I cloned the Simon-CSS to my repository using my pem key. I learned that with si
     - `console.log(await cow()); // OUTPUT: moo`
   By combining async, to define functions that return promises, with await, to wait on the promise, you can create code that is asynchronous, but still maintains the flow of the code without explicitly using callbacks.
   `const httpResponse = await fetch('https://simon.cs260.click/api/user/me');`
+- Promises
+  - There are 3 possible states:
+    - pending - Currently running asynchronously
+    - fulfilled - Completed successfully  
+    - rejected - Failed to complete   
