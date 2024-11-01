@@ -1,57 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <!-- viewport for mobile -->
-    <link rel="stylesheet" href="main.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <link rel="icon" href="\public\prioritasktransparent.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
     <title>Prioritask</title>
-    <link rel="icon" href="PrioritaskLogo.png" />
   </head>
   <body>
-   
-    <header>
-      <!-- <h1>Prioritask<sup>&reg;</sup></h1> -->
-      <img src="prioritasktransparent.png" alt="PrioritaskLogo"
-      style="width:300px;height:150px">
-
-
-      <!-- Navigation elements -->
-      <nav>
-        <!-- Menu -->
-        <menu>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="addTask.html">Add Task</a></li>
-          <li><a href="taskList.html">Task List</a></li>
-          <li><a href="motivation.html">Motivation</a></li>
-        </menu>
-      </nav>
-
-      <hr />
-    </header>
-
-    <main>
-      <h1>Login/Register</h1>
-      <form method="get" action="addTask.html">
-        <div>
-
-          <input type="text" placeholder="Your name" />
-        </div>
-        <div>
-  
-          <input type="Password" placeholder="Password" />
-        </div>
-        <button type="submit">Login</button>
-        <button type="submit">Create</button>
-      </form>
-    </main>
-
-    <footer>
-      <hr />
-      <br />
-      <a href="https://github.com/jocelynperucca/startup">GitHub Repository</a>
-    </br>
-      <span class="text-reset">Jocelyn Perucca</span>
-    </footer>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/index.jsx"></script>
   </body>
 </html>
