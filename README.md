@@ -66,4 +66,13 @@ For this deliverable I designed and styled Prioritask and each of its pages.
 - [x] **Application text content** - I made sure there are consistent fonts across all pages. Font colors match with logo colors and task priorities are either red, orange, or green depending on priority level on *addTask.html/.css* and *taskList.html/.css*. Added flourish font to Motivational Quote API placeholder on *motivational.html/.css*.
 - [x] **Application Images** - My application image is the Prioritask logo and is now centered on each page along with the added flex element so that it stays in the center no matter the window size or device.
 
+## React Deliverable
+
+For this deliverable I used JavaScript and React so that Prioritask mocks full application functionality. It will work for a single user.
+
+- [X] **Bundled and Transpliled**
+- [X] **Components**
+    - [X]
+- [X] **Router**
+- [X] **Hooks**
 
