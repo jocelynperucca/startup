@@ -29,12 +29,9 @@ footer {
 
 
 li {
-    
     font-weight: bold;
     list-style-type: disc;
-
-    padding: .15em;
-    
+    padding: .15em; 
 }
 
 menu
