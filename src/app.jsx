@@ -1,9 +1,15 @@
 import React from 'react';
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import { Login } from './login/login';
+import { AddTask } from './addTask/addTask';
+import { TaskList } from './taskList/taskList';
+import { Motivation } from './motivation/motivation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 export default function App() {
     return (
+        <BrowserRouter>
         <div className='body'>
             <header className='container-fluid'>
                 <nav className='navbar navbar-light'>
@@ -13,16 +19,16 @@ export default function App() {
                         </a>
                         <ul className='navbar-nav d-flex flex-row ms-auto'>
                             <li className='nav-item mx-2'>
-                                <a className='nav-link' href='index.html'>Home</a>
+                            <NavLink className='nav-link' to=''>Login</NavLink>
                             </li>
                             <li className='nav-item mx-2'>
-                                <a className='nav-link' href='addTask.html'>Add Task</a>
+                                <NavLink className='nav-link' to='addTask'>AddTask</NavLink>
                             </li>
                             <li className='nav-item mx-2'>
-                                <a className='nav-link' href='taskList.html'>Task List</a>
+                                <NavLink className='nav-link' to='taskList'>TaskList</NavLink>
                             </li>
                             <li className='nav-item mx-2'>
-                                <a className='nav-link' href='motivation.html'>Motivation</a>
+                                <NavLink className='nav-link' to='motivation'>Motivation</NavLink>
                             </li>
                         </ul>
                     </div>
@@ -39,6 +45,14 @@ export default function App() {
                 </form>
             </main>
 
+            <Routes>
+                <Route path='/' element={<Login />} exact />
+                <Route path='/play' element={<Play />} />
+                <Route path='/scores' element={<Scores />} />
+                <Route path='/about' element={<About />} />
+                <Route path='*' element={<NotFound />} />
+            </Routes>
+
             <footer>
                 <div className='container text-center py-3'>
                     <span>Jocelyn Perucca </span>
@@ -46,5 +60,6 @@ export default function App() {
                 </div>
             </footer>
         </div>
+        </BrowserRouter>
     );
 }
