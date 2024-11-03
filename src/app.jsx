@@ -35,16 +35,6 @@ export default function App() {
                 </nav>
             </header>
 
-            <main className='container mt-4'>
-                <h1>Login/Register</h1>
-                <form>
-                    <input type='text' placeholder='Your name' />
-                    <input type='password' placeholder='Password' />
-                    <button type='submit'>Login</button>
-                    <button type='submit'>Create</button>
-                </form>
-            </main>
-
             <Routes>
                 <Route path='/' element={<Login />} exact />
                 <Route path='/addTask' element={<AddTask />} />
