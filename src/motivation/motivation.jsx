@@ -2,6 +2,16 @@ import React from 'react';
 import './motivation.css';
 
 export function Motivation() {
+  const [quote, setQuote] = React.useState('Loading...');
+  const [quoteAuthor, setQuoteAuthor] = React.useState('unknown');
+
+
+
+  React.useEffect(() => {
+    setQuote('If you believe it will work, you\'ll see opportunities. If you believe it won\'t, you will see obstacles.');
+    setQuoteAuthor('Wayne Dyer');
+}, []);
+
   return (
     <main>
       <p>
@@ -11,10 +21,8 @@ export function Motivation() {
       </p>
 
       <div id="motivational-quote">
-        <blockquote>
-          "If you believe it will work, you'll see opportunities. If you believe it won't, you will see obstacles."
-        </blockquote>
-        <div>- Wayne Dyer -</div>
+      <p className='quote'>{quote}</p>
+      <p className='author'>{quoteAuthor}</p>
       </div>
     </main>
   );
