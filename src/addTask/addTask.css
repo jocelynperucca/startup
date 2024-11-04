@@ -44,8 +44,18 @@ img {
   width: 40%;
 }
 
+main {
+    text-decoration: none;
+}
+
+p {
+    font-weight: lighter;
+    text-decoration: none;
+}
+
 div label {
     font-weight: bold;
+    margin-right: 10px;
 }
 
 label[for=priority1]
@@ -63,6 +73,7 @@ label[for=priority2]
 label[for=priority3]
 {
     color: green;
+    font-weight: lighter;
 }
 
 div {

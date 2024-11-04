@@ -3,6 +3,7 @@ main {
   color: #333;
   padding: 1.5em;
   line-height: 1.6;
+  text-decoration: none;
 }
 
 #motivational-quote {
@@ -26,6 +27,7 @@ main {
 p {
   max-width: 600px;
   font-size: 1em;
+  text-decoration: none;
 }
 
 @media (max-width: 600px) {
