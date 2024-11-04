@@ -5,7 +5,7 @@ export function Login() {
   return (
     <main>
       <h1>Login/Register</h1>
-      <form method="get" action="addTask.html">
+      <form method="get" action="addTask">
         <div>
 
           <input type="text" placeholder="Your name" />
