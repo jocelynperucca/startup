@@ -11,7 +11,8 @@ import './app.css';
 export default function App() {
     const [userName, setUserName] = useState(localStorage.getItem('userName') || '');
     const [authState, setAuthState] = useState(userName ? AuthState.Authenticated : AuthState.Unauthenticated);
-    const [tasks, setTasks] = useState([]); // State to manage tasks
+    const [tasks, setTasks] = useState([]); // Initialize tasks as an empty array
+    const [completedTasks, setCompletedTasks] = useState([]); // Initialize completed tasks as an empty array
 
     const onAuthChange = (loginUserName, newAuthState) => {
         setUserName(loginUserName);
@@ -23,9 +24,13 @@ export default function App() {
         }
     };
 
-    // Function to add a new task
-    const addTask = (taskName, priority) => {
-        setTasks([...tasks, { taskName, priority, userName }]);
+    const markAsDone = (index) => {
+        const task = tasks[index];
+        if (task) {
+            task.completed = true;
+            setTasks([...tasks]); // Update tasks to trigger re-render
+            setCompletedTasks([...completedTasks, task]); // Add task to completed tasks
+        }
     };
 
     return (
@@ -71,7 +76,7 @@ export default function App() {
                 <main className='container'>
                     {authState === AuthState.Authenticated && (
                         <div className='welcome-message'>
-                            <h2>Welcome, {userName}!</h2>
+                            <h2>Welcome {userName}!</h2>
                         </div>
                     )}
 
@@ -82,11 +87,11 @@ export default function App() {
                         />
                         <Route 
                             path='/addTask' 
-                            element={authState === AuthState.Authenticated ? <AddTask userName={userName} addTask={addTask} /> : <Navigate to="/" replace />}
+                            element={authState === AuthState.Authenticated ? <AddTask userName={userName} setTasks={setTasks} /> : <Navigate to="/" replace />}
                         />
                         <Route 
                             path='/taskList' 
-                            element={authState === AuthState.Authenticated ? <TaskList tasks={tasks} userName={userName} /> : <Navigate to="/" replace />} 
+                            element={authState === AuthState.Authenticated ? <TaskList tasks={tasks} completedTasks={completedTasks} markAsDone={markAsDone} userName={userName} /> : <Navigate to="/" replace />} 
                         />
                         <Route 
                             path='/motivation' 
