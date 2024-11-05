@@ -7,7 +7,6 @@ export function AddTask({ userName }) {
       <h2>Add Task</h2>
       <div>Task User:</div>
       <p>{userName}</p>
-      <br />{/* Displaying the username */}
       
       <form>
         <div>
