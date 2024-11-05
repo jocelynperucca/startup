@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
-import { Login } from './login/login';
+import { Login } from './login/login.jsx';
 import { AddTask } from './addTask/addTask';
 import { TaskList } from './taskList/taskList';
 import { Motivation } from './motivation/motivation';
-import { AuthState } from './login/authState';  // Assuming you have this file
+import { AuthState } from './login/authState';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
 
 export default function App() {
-    const [authState, setAuthState] = useState(AuthState.Unauthenticated);
-    const [userName, setUserName] = useState('');
+    const [userName, setUserName] = useState(localStorage.getItem('userName') || '');
+    const [authState, setAuthState] = useState(userName ? AuthState.Authenticated : AuthState.Unauthenticated);
 
-    // Function to update authentication state
     const onAuthChange = (loginUserName, newAuthState) => {
-        console.log("onAuthChange called with:", loginUserName, newAuthState); // Debugging output
         setUserName(loginUserName);
         setAuthState(newAuthState);
+        if (newAuthState === AuthState.Authenticated) {
+            localStorage.setItem('userName', loginUserName);
+        } else {
+            localStorage.removeItem('userName');
+        }
     };
 
     return (
@@ -29,18 +32,33 @@ export default function App() {
                                 <img className='brand-logo' src='/prioritasktransparent.png' alt='Prioritask Logo' />
                             </a>
                             <ul className='navbar-nav d-flex flex-row ms-auto'>
-                                <li className='nav-item mx-2'>
-                                    <NavLink className='nav-link' to='/'>Login</NavLink>
-                                </li>
-                                <li className='nav-item mx-2'>
-                                    <NavLink className='nav-link' to='/addTask'>AddTask</NavLink>
-                                </li>
-                                <li className='nav-item mx-2'>
-                                    <NavLink className='nav-link' to='/taskList'>TaskList</NavLink>
-                                </li>
-                                <li className='nav-item mx-2'>
-                                    <NavLink className='nav-link' to='/motivation'>Motivation</NavLink>
-                                </li>
+                                {authState === AuthState.Unauthenticated && (
+                                    <li className='nav-item mx-2'>
+                                        <NavLink className='nav-link' to='/'>
+                                            Login
+                                        </NavLink>
+                                    </li>
+                                )}
+                                {authState === AuthState.Authenticated && (
+                                    <>
+                                        <li className='nav-item mx-2'>
+                                            <NavLink className='nav-link' to='/addTask'>AddTask</NavLink>
+                                        </li>
+                                        <li className='nav-item mx-2'>
+                                            <NavLink className='nav-link' to='/taskList'>TaskList</NavLink>
+                                        </li>
+                                        <li className='nav-item mx-2'>
+                                            <NavLink className='nav-link' to='/motivation'>Motivation</NavLink>
+                                        </li>
+                                        <li className='nav-item mx-2'>
+                                            <button 
+                                                className='nav-link btn btn-link' 
+                                                onClick={() => onAuthChange('', AuthState.Unauthenticated)}>
+                                                Logout
+                                            </button>
+                                        </li>
+                                    </>
+                                )}
                             </ul>
                         </div>
                     </nav>
@@ -49,23 +67,17 @@ export default function App() {
                 <Routes>
                     <Route 
                         path='/' 
-                        element={
-                            <Login 
-                                userName={userName} 
-                                authState={authState} 
-                                onAuthChange={onAuthChange} 
-                            />
-                        } 
+                        element={<Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} 
                     />
-                    <Route path='/addTask' element={<AddTask />} />
-                    <Route path='/taskList' element={<TaskList />} />
-                    <Route path='/motivation' element={<Motivation />} />
+                    <Route path='/addTask' element={authState === AuthState.Authenticated ? <AddTask /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} />
+                    <Route path='/taskList' element={authState === AuthState.Authenticated ? <TaskList /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} />
+                    <Route path='/motivation' element={authState === AuthState.Authenticated ? <Motivation /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
 
                 <footer>
                     <div className='container text-center py-3'>
-                        <span>Jocelyn Perucca </span>
+                        <span>Jocelyn Perucca</span>
                         <div></div>
                         <a className='text-reset' href='https://github.com/jocelynperucca/startup'>GitHub</a>
                     </div>
