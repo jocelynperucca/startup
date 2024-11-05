@@ -71,8 +71,11 @@ For this deliverable I designed and styled Prioritask and each of its pages.
 For this deliverable I used JavaScript and React so that Prioritask mocks full application functionality. It will work for a single user.
 
 - [X] **Bundled and Transpliled** - I did this with the instructions from Simon React!
-- [X] **Components** - Login, addTask, taskList, motivation components added in src directory. In each component contain functions to mock app functionality.
-    - [X] **something**
+- [X] **Components** - *Login*, *addTask*, *taskList*, and *motivation* components added in src directory. In each component contain functions to mock app functionality.
+    - [X] **Login** - When you "create user" or "login" it will grant you access to the rest of the pages. You must have something typed into the fields to login or create user.
+    - [X] **Database** - Local storage is used to store userName for *Login* component and use that for adding task name and task completed name. Mocks database functionality with completed tasks table and *addTask* and *taskList* components and stored tasks completed even when a different user is logged in.
+    - [X] **Web Socket** - Prioritask mocks web socket functionality by allowing mulitple users to add tasks to task list and will show up for other logged in users using *addTask* and *taskList* components.
+    - [X] **App functionality** - With all these components placed together, startup.prioritask.click mocks all functionality with being able to log in, add a task see the task list, mark tasks as done, and see the motivation API when logged in.
 - [X] **Router** - Routing between login and addTask, taskList, and motivation components.
-- [X] **Hooks** - I used <useState> to hold values for username, authenticated state, to hold values to pass to taskList from addTask, and when clicked the checkbox for done, to move those values to a different table of completed tasks.
+- [X] **Hooks** - I used `useState` to hold values for username, authenticated state, to hold values to pass to taskList from addTask, and when clicked the checkbox for done, to move those values to a different table of completed tasks. I also used `useEffect` in my *motivation* component to mock API call functionality and be a placeholder for where my motivational-quote API will go in later startups.
 
