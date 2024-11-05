@@ -32,12 +32,11 @@ export default function App() {
                                 <img className='brand-logo' src='/prioritasktransparent.png' alt='Prioritask Logo' />
                             </a>
                             <ul className='navbar-nav d-flex flex-row ms-auto'>
-                                {authState === AuthState.Unauthenticated && (
+                                {authState === AuthState.Unauthenticated ? (
                                     <li className='nav-item mx-2'>
                                         <NavLink className='nav-link' to='/'>Login</NavLink>
                                     </li>
-                                )}
-                                {authState === AuthState.Authenticated && (
+                                ) : (
                                     <>
                                         <li className='nav-item mx-2'>
                                             <NavLink className='nav-link' to='/addTask'>Add Task</NavLink>
@@ -72,7 +71,7 @@ export default function App() {
                     <Routes>
                         <Route 
                             path='/' 
-                            element={authState === AuthState.Unauthenticated ? <Login userName={userName} authState={authState} onAuthChange={onAuthChange} /> : <Navigate to="/addTask" replace />} 
+                            element={authState === AuthState.Unauthenticated ? <Login onAuthChange={onAuthChange} /> : <Navigate to="/addTask" replace />} 
                         />
                         <Route 
                             path='/addTask' 
@@ -80,7 +79,7 @@ export default function App() {
                         />
                         <Route 
                             path='/taskList' 
-                            element={authState === AuthState.Authenticated ? <TaskList /> : <Navigate to="/" replace />}
+                            element={authState === AuthState.Authenticated ? <TaskList userName={userName} /> : <Navigate to="/" replace />} 
                         />
                         <Route 
                             path='/motivation' 
