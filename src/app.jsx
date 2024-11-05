@@ -27,9 +27,9 @@ export default function App() {
     const markAsDone = (index) => {
         const task = tasks[index];
         if (task) {
-            task.completed = true;
-            setTasks([...tasks]); // Update tasks to trigger re-render
-            setCompletedTasks([...completedTasks, task]); // Add task to completed tasks
+            const completedTask = { ...task, completed: true, completedBy: userName }; // Add completedBy property
+            setTasks(tasks.map((t, i) => (i === index ? completedTask : t))); // Update the task to mark it done
+            setCompletedTasks((prev) => [...prev, completedTask]); // Add task to completed tasks
         }
     };
 
@@ -76,7 +76,7 @@ export default function App() {
                 <main className='container'>
                     {authState === AuthState.Authenticated && (
                         <div className='welcome-message'>
-                            <h2>Welcome {userName}!</h2>
+                            <h2>Welcome, {userName}!</h2>
                         </div>
                     )}
 
