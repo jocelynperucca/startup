@@ -35,6 +35,10 @@ main {
   margin-top: 0.5em;
 }
 
+.motivation {
+  text-align: center;
+}
+
 p {
   max-width: 600px;
   font-size: 1em;

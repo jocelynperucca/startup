@@ -14,7 +14,7 @@ export function Motivation() {
 
   return (
     <main>
-      <p>
+      <p className='motivation'>
         We know that finishing your to-do lists can be a lengthy and strenuous task. Here at Prioritask, we want to make sure that not only do you have
         the tools to accomplish your tasks with your friends, roommates, family, etc., but also the motivation to help you get things done!
         Check back here any time you need a motivational quote to push you along.
