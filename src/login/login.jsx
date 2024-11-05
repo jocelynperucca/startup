@@ -28,10 +28,10 @@ export function Login({ userName, authState, onAuthChange }) {
                 <div>
                     <input type="password" placeholder="Password" required />
                 </div>
-                <div class="button-container">
+                <div classname ="button-container">
                 <button type="submit">Login</button>
                 <button type="submit">Create</button>
-                s</div>
+                </div>
             </form>
         </main>
     );
