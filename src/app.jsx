@@ -11,6 +11,7 @@ import './app.css';
 export default function App() {
     const [userName, setUserName] = useState(localStorage.getItem('userName') || '');
     const [authState, setAuthState] = useState(userName ? AuthState.Authenticated : AuthState.Unauthenticated);
+    const [tasks, setTasks] = useState([]); // State to manage tasks
 
     const onAuthChange = (loginUserName, newAuthState) => {
         setUserName(loginUserName);
@@ -20,6 +21,11 @@ export default function App() {
         } else {
             localStorage.removeItem('userName');
         }
+    };
+
+    // Function to add a new task
+    const addTask = (taskName, priority) => {
+        setTasks([...tasks, { taskName, priority, userName }]);
     };
 
     return (
@@ -32,11 +38,12 @@ export default function App() {
                                 <img className='brand-logo' src='/prioritasktransparent.png' alt='Prioritask Logo' />
                             </a>
                             <ul className='navbar-nav d-flex flex-row ms-auto'>
-                                {authState === AuthState.Unauthenticated ? (
+                                {authState === AuthState.Unauthenticated && (
                                     <li className='nav-item mx-2'>
                                         <NavLink className='nav-link' to='/'>Login</NavLink>
                                     </li>
-                                ) : (
+                                )}
+                                {authState === AuthState.Authenticated && (
                                     <>
                                         <li className='nav-item mx-2'>
                                             <NavLink className='nav-link' to='/addTask'>Add Task</NavLink>
@@ -64,7 +71,7 @@ export default function App() {
                 <main className='container'>
                     {authState === AuthState.Authenticated && (
                         <div className='welcome-message'>
-                            <h2>Welcome {userName}!</h2>
+                            <h2>Welcome, {userName}!</h2>
                         </div>
                     )}
 
@@ -75,11 +82,11 @@ export default function App() {
                         />
                         <Route 
                             path='/addTask' 
-                            element={authState === AuthState.Authenticated ? <AddTask userName={userName} /> : <Navigate to="/" replace />}
+                            element={authState === AuthState.Authenticated ? <AddTask userName={userName} addTask={addTask} /> : <Navigate to="/" replace />}
                         />
                         <Route 
                             path='/taskList' 
-                            element={authState === AuthState.Authenticated ? <TaskList userName={userName} /> : <Navigate to="/" replace />} 
+                            element={authState === AuthState.Authenticated ? <TaskList tasks={tasks} userName={userName} /> : <Navigate to="/" replace />} 
                         />
                         <Route 
                             path='/motivation' 
