@@ -64,7 +64,7 @@ export default function App() {
                 <main className='container'>
                     {authState === AuthState.Authenticated && (
                         <div className='welcome-message'>
-                            <h2>Welcome, {userName}!</h2>
+                            <h2>Welcome {userName}!</h2>
                         </div>
                     )}
 
