@@ -1,47 +1,35 @@
-import React, { useState } from 'react';
-import { AuthState } from './authState';  // Ensure this exists and contains the AuthState constants
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './login.css';
+import { AuthState } from './authState';
 
 export function Login({ userName, authState, onAuthChange }) {
-    const [name, setName] = useState(userName);
-    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-        if (name && password) {
-            onAuthChange(name, AuthState.Authenticated);
-        }
-    };
-
-    const handleRegister = (e) => {
-        e.preventDefault();
-        if (name && password) {
-            onAuthChange(name, AuthState.Authenticated);
-        }
+    const handleLogin = (loginUserName) => {
+        // Simulate authentication process
+        onAuthChange(loginUserName, AuthState.Authenticated);
+        navigate('/addTask');  // Redirect to AddTask on successful login
     };
 
     return (
-        <main className='login'>
+        <main>
             <h1>Login/Register</h1>
-            <form>
+            <form
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    const loginUserName = e.target.elements.username.value;
+                    handleLogin(loginUserName);
+                }}
+            >
                 <div>
-                    <input
-                        type="text"
-                        placeholder="Your name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                    />
+                    <input type="text" name="username" placeholder="Your name" required />
                 </div>
                 <div>
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
+                    <input type="password" placeholder="Password" required />
                 </div>
-                <button type="submit" onClick={handleLogin}>Login</button>
-                <button type="submit" onClick={handleRegister}>Create</button>
+                <button type="submit">Login</button>
+                <button type="button">Create Account</button>
             </form>
         </main>
     );

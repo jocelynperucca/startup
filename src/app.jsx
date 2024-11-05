@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
-import { Login } from './login/login.jsx';
+import { BrowserRouter, NavLink, Route, Routes, Navigate } from 'react-router-dom';
+import { Login } from './login/login';
 import { AddTask } from './addTask/addTask';
 import { TaskList } from './taskList/taskList';
 import { Motivation } from './motivation/motivation';
@@ -65,26 +65,26 @@ export default function App() {
                 <main className='container'>
                     {authState === AuthState.Authenticated && (
                         <div className='welcome-message'>
-                            <h2>Welcome {userName}!</h2>
+                            <h2>Welcome, {userName}!</h2>
                         </div>
                     )}
 
                     <Routes>
                         <Route 
                             path='/' 
-                            element={<Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} 
+                            element={authState === AuthState.Unauthenticated ? <Login userName={userName} authState={authState} onAuthChange={onAuthChange} /> : <Navigate to="/addTask" replace />} 
                         />
                         <Route 
                             path='/addTask' 
-                            element={authState === AuthState.Authenticated ? <AddTask /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} 
+                            element={authState === AuthState.Authenticated ? <AddTask /> : <Navigate to="/" replace />}
                         />
                         <Route 
                             path='/taskList' 
-                            element={authState === AuthState.Authenticated ? <TaskList /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} 
+                            element={authState === AuthState.Authenticated ? <TaskList /> : <Navigate to="/" replace />}
                         />
                         <Route 
                             path='/motivation' 
-                            element={authState === AuthState.Authenticated ? <Motivation /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} 
+                            element={authState === AuthState.Authenticated ? <Motivation /> : <Navigate to="/" replace />}
                         />
                         <Route path='*' element={<NotFound />} />
                     </Routes>
