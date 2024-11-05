@@ -72,7 +72,7 @@ For this deliverable I used JavaScript and React so that Prioritask mocks full a
 
 - [X] **Bundled and Transpliled**
 - [X] **Components**
-    - [X]
+    - [X] **something**
 - [X] **Router**
 - [X] **Hooks**
 
