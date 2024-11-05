@@ -34,18 +34,16 @@ export default function App() {
                             <ul className='navbar-nav d-flex flex-row ms-auto'>
                                 {authState === AuthState.Unauthenticated && (
                                     <li className='nav-item mx-2'>
-                                        <NavLink className='nav-link' to='/'>
-                                            Login
-                                        </NavLink>
+                                        <NavLink className='nav-link' to='/'>Login</NavLink>
                                     </li>
                                 )}
                                 {authState === AuthState.Authenticated && (
                                     <>
                                         <li className='nav-item mx-2'>
-                                            <NavLink className='nav-link' to='/addTask'>AddTask</NavLink>
+                                            <NavLink className='nav-link' to='/addTask'>Add Task</NavLink>
                                         </li>
                                         <li className='nav-item mx-2'>
-                                            <NavLink className='nav-link' to='/taskList'>TaskList</NavLink>
+                                            <NavLink className='nav-link' to='/taskList'>Task List</NavLink>
                                         </li>
                                         <li className='nav-item mx-2'>
                                             <NavLink className='nav-link' to='/motivation'>Motivation</NavLink>
@@ -64,16 +62,33 @@ export default function App() {
                     </nav>
                 </header>
 
-                <Routes>
-                    <Route 
-                        path='/' 
-                        element={<Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} 
-                    />
-                    <Route path='/addTask' element={authState === AuthState.Authenticated ? <AddTask /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} />
-                    <Route path='/taskList' element={authState === AuthState.Authenticated ? <TaskList /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} />
-                    <Route path='/motivation' element={authState === AuthState.Authenticated ? <Motivation /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} />
-                    <Route path='*' element={<NotFound />} />
-                </Routes>
+                <main className='container'>
+                    {authState === AuthState.Authenticated && (
+                        <div className='welcome-message'>
+                            <h2>Welcome {userName}!</h2>
+                        </div>
+                    )}
+
+                    <Routes>
+                        <Route 
+                            path='/' 
+                            element={<Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} 
+                        />
+                        <Route 
+                            path='/addTask' 
+                            element={authState === AuthState.Authenticated ? <AddTask /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} 
+                        />
+                        <Route 
+                            path='/taskList' 
+                            element={authState === AuthState.Authenticated ? <TaskList /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} 
+                        />
+                        <Route 
+                            path='/motivation' 
+                            element={authState === AuthState.Authenticated ? <Motivation /> : <Login userName={userName} authState={authState} onAuthChange={onAuthChange} />} 
+                        />
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
+                </main>
 
                 <footer>
                     <div className='container text-center py-3'>
