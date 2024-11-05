@@ -75,7 +75,7 @@ export default function App() {
                         />
                         <Route 
                             path='/addTask' 
-                            element={authState === AuthState.Authenticated ? <AddTask /> : <Navigate to="/" replace />}
+                            element={authState === AuthState.Authenticated ? <AddTask userName={userName} /> : <Navigate to="/" replace />}
                         />
                         <Route 
                             path='/taskList' 

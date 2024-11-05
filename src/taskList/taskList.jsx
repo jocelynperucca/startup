@@ -4,6 +4,7 @@ import './taskList.css';
 export function TaskList({ userName }) {
   return (
     <main>
+        <h2>Task List</h2>
       <div>Task User:</div>
       <p>{userName}</p>
       <br />
