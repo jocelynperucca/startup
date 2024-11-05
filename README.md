@@ -70,9 +70,9 @@ For this deliverable I designed and styled Prioritask and each of its pages.
 
 For this deliverable I used JavaScript and React so that Prioritask mocks full application functionality. It will work for a single user.
 
-- [X] **Bundled and Transpliled**
-- [X] **Components**
+- [X] **Bundled and Transpliled** - I did this with the instructions from Simon React!
+- [X] **Components** - Login, addTask, taskList, motivation components added in src directory. In each component contain functions to mock app functionality.
     - [X] **something**
-- [X] **Router**
-- [X] **Hooks**
+- [X] **Router** - Routing between login and addTask, taskList, and motivation components.
+- [X] **Hooks** - I used <useState> to hold values for username, authenticated state, to hold values to pass to taskList from addTask, and when clicked the checkbox for done, to move those values to a different table of completed tasks.
 
