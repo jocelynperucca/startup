@@ -3,7 +3,7 @@ const axios = require('axios');
 const app = express();
 const uuid = require('uuid');
 const cors = require('cors');
-
+app.use(express.static('public'));
 app.use(cors());
 
 let users = {};
