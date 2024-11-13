@@ -5,6 +5,7 @@ export function Motivation() {
   const [quote, setQuote] = useState('Loading...');
   const [quoteAuthor, setQuoteAuthor] = useState('unknown');
 
+  //Motivational quote API call
   useEffect(() => {
     fetch('http://localhost:3000/api/quote')
       .then(response => response.json())

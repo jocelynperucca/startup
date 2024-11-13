@@ -8,10 +8,10 @@ app.use(cors());
 let users = {};
 let tasks = [];
 
+//set port
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 app.use(express.json());
-
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
@@ -25,6 +25,7 @@ apiRouter.get('/tasks', (_req, res) => {
   res.send(tasks);
 });
 
+//motivational quote api
 app.get('/api/quote', async (req, res) => {
     try {
       const response = await axios.get('https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en');
