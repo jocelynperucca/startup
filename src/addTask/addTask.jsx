@@ -7,11 +7,39 @@ export function AddTask({ userName, setTasks }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check if taskName is not empty
     if (taskName) {
       const newTask = { taskName, userName, priority, completed: false };
-      setTasks((prevTasks) => [...prevTasks, newTask]);
-      setTaskName(''); // Reset task name
-      setPriority('low'); // Reset priority
+
+      // Debugging log to check the new task object
+      console.log('New task being added:', newTask);
+
+      // Send the new task to the backend API
+      fetch('http://localhost:3000/api/tasks', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newTask),
+      })
+        .then((response) => {
+          // Log the response status to check if the request is successful
+          console.log('Response Status:', response.status);
+          return response.json();
+        })
+        .then((data) => {
+          console.log('Data received from server:', data);
+          if (data) {
+            // Add the newly created task to the frontend state
+            setTasks((prevTasks) => [...prevTasks, data]);
+            setTaskName(''); // Reset task name
+            setPriority('low'); // Reset priority
+          }
+        })
+        .catch((error) => {
+          console.error('Error adding task:', error);
+        });
     }
   };
 
@@ -20,7 +48,7 @@ export function AddTask({ userName, setTasks }) {
       <h2>Add Task</h2>
       <div>Task User:</div>
       <p>{userName}</p>
-      
+
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="taskName">Task Name:</label>

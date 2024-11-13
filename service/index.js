@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const uuid = require('uuid');
+const cors = require('cors');
+app.use(cors());
 
 let users = {};
 let tasks = [];
@@ -24,15 +26,17 @@ apiRouter.get('/tasks', (_req, res) => {
 
 // Define route to add a new task
 apiRouter.post('/tasks', (req, res) => {
-  const newTask = req.body; // Expecting task object in the request body
-  if (newTask && newTask.taskName && newTask.priority && newTask.userName) {
-    newTask.completed = false; // Add default properties
-    tasks.push(newTask); // Store the task in the array
-    res.status(201).send(newTask); // Respond with the created task
-  } else {
-    res.status(400).send({ error: 'Invalid task data' });
-  }
-});
+    const newTask = req.body; // Expecting task object in the request body
+    if (newTask && newTask.taskName && newTask.priority && newTask.userName) {
+      newTask.id = uuid.v4(); // Generate a unique ID for the task
+      newTask.completed = false; // Add default properties
+      tasks.push(newTask); // Store the task in the array
+      res.status(201).send(newTask); // Respond with the created task
+    } else {
+      res.status(400).send({ error: 'Invalid task data' });
+    }
+  });
+  
 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
