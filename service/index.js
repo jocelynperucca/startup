@@ -101,6 +101,13 @@ apiRouter.delete('/auth/logout', (req, res) => {
   res.status(204).end();
 });
 
+app.post('/api/register', (req, res) => {
+    const { username, password } = req.body;
+    // Add logic to save user information (e.g., in a database)
+    res.status(200).json({ message: 'User registered successfully' });
+});
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
