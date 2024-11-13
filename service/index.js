@@ -36,6 +36,19 @@ apiRouter.post('/tasks', (req, res) => {
       res.status(400).send({ error: 'Invalid task data' });
     }
   });
+
+  apiRouter.put('/tasks/:id', (req, res) => {
+    const taskId = req.params.id;
+    const updatedTask = req.body;
+  
+    const taskIndex = tasks.findIndex(task => task.id === taskId);
+    if (taskIndex !== -1) {
+      tasks[taskIndex] = updatedTask; // Update the task in the array
+      res.send(updatedTask); // Send back the updated task
+    } else {
+      res.status(404).send({ error: 'Task not found' });
+    }
+  });
   
 
 // CreateAuth a new user

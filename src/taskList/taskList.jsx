@@ -1,56 +1,69 @@
 import React, { useState, useEffect } from 'react';
 import './taskList.css';
 
-export function TaskList({ markAsDone, userName }) {
+export function TaskList({ userName }) {
   const [tasks, setTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
 
   // Fetch tasks from the server
   useEffect(() => {
-    // Fetch pending tasks
+    // Fetch all tasks from the server
     fetch('http://localhost:3000/api/tasks')
       .then(response => response.json())
       .then(data => {
-        setTasks(data.filter(task => !task.completed)); // Filter tasks to show only incomplete ones
-        setCompletedTasks(data.filter(task => task.completed)); // Filter tasks to show only completed ones
+        // Separate tasks into pending and completed based on the 'completed' field
+        setTasks(data.filter(task => !task.completed)); 
+        setCompletedTasks(data.filter(task => task.completed)); 
       })
       .catch(error => console.error('Error fetching tasks:', error));
   }, []);
 
-  const taskRows = [];
-  const completedTaskRows = [];
+  // Function to mark a task as done
+  const markAsDone = (task) => {
+    const updatedTask = { ...task, completed: true, completedBy: userName };
+
+    // Send a PUT request to update the task's status on the server
+    fetch(`http://localhost:3000/api/tasks/${task.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(updatedTask),
+    })
+      .then(response => response.json())
+      .then(() => {
+        // Update the local state to reflect the change
+        setTasks(tasks.filter(t => t.id !== task.id)); // Remove the task from pending
+        setCompletedTasks(prevCompleted => [...prevCompleted, updatedTask]); // Add to completed tasks
+      })
+      .catch(error => console.error('Error updating task:', error));
+  };
 
   // Build task rows for incomplete tasks
-  for (let index = 0; index < tasks.length; index++) {
-    const task = tasks[index];
-    taskRows.push(
-      <tr key={index}>
-        <td>{task.taskName}</td>
-        <td>{task.userName}</td>
-        <td>{task.priority}</td>
-        <td className="checkbox">
-          <input
-            type="checkbox"
-            id={`markDone${index}`}
-            name="done"
-            onChange={() => markAsDone(task)} // Pass the full task to mark as done
-          />
-          <label htmlFor={`markDone${index}`}></label>
-        </td>
-      </tr>
-    );
-  }
+  const taskRows = tasks.map((task, index) => (
+    <tr key={task.id}>
+      <td>{task.taskName}</td>
+      <td>{task.userName}</td>
+      <td>{task.priority}</td>
+      <td className="checkbox">
+        <input
+          type="checkbox"
+          id={`markDone${index}`}
+          name="done"
+          onChange={() => markAsDone(task)} // Mark the task as done
+        />
+        <label htmlFor={`markDone${index}`}></label>
+      </td>
+    </tr>
+  ));
 
   // Build completed task rows
-  for (let index = 0; index < completedTasks.length; index++) {
-    const task = completedTasks[index];
-    completedTaskRows.push(
-      <tr key={index}>
-        <td>{task.taskName}</td>
-        <td>{task.completedBy}</td> {/* Show the user who completed the task */}
-      </tr>
-    );
-  }
+  const completedTaskRows = completedTasks.map((task, index) => (
+    <tr key={task.id}>
+      <td>{task.taskName}</td>
+      <td>{task.completedBy}</td> {/* Show the user who completed the task */}
+    </tr>
+  ));
 
   return (
     <main>
