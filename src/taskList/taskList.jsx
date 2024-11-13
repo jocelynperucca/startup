@@ -1,81 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './taskList.css';
 
-export function TaskList({ tasks, completedTasks, markAsDone, userName }) {
-  const taskRows = [];
-  const completedTaskRows = [];
+export function TaskList({ userName, markAsDone }) {
+  const [tasks, setTasks] = useState([]);
 
-  // Build task rows
-  for (let index = 0; index < tasks.length; index++) {
-    const task = tasks[index];
-    if (!task.completed) {
-      taskRows.push(
-        <tr key={index}>
-          <td>{task.taskName}</td>
-          <td>{task.userName}</td>
-          <td>{task.priority}</td>
-          <td className="checkbox">
-            <input
-              type="checkbox"
-              id={`markDone${index}`}
-              name="done"
-              onChange={() => markAsDone(index)}
-            />
-            <label htmlFor={`markDone${index}`}></label>
-          </td>
-        </tr>
-      );
-    }
-  }
-
-  // Build completed task rows
-  for (let index = 0; index < completedTasks.length; index++) {
-    const task = completedTasks[index];
-    completedTaskRows.push(
-      <tr key={index}>
-        <td>{task.taskName}</td>
-        <td>{task.completedBy}</td> {/* Show the user who completed the task */}
-      </tr>
-    );
-  }
+  // Fetch tasks from the server when the component mounts
+  useEffect(() => {
+    fetch('http://localhost:3000/api/tasks')  // Ensure the correct backend URL
+      .then(response => response.json())
+      .then(data => setTasks(data))
+      .catch(error => console.error('Error fetching tasks:', error));
+  }, []);
 
   return (
     <main>
       <h2>Task List</h2>
-      <table className="TaskList">
-        <thead>
-          <tr>
-            <th>Task</th>
-            <th>Name</th>
-            <th>Priority</th>
-            <th>Done</th>
-          </tr>
-        </thead>
-        <tbody>
-          {taskRows.length > 0 ? taskRows : (
-            <tr>
-              <td colSpan="4">No tasks available.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-
-      <h2>Completed Tasks</h2>
-      <table className="CompletedTasks">
-        <thead>
-          <tr>
-            <th>Task</th>
-            <th>Completed By</th>
-          </tr>
-        </thead>
-        <tbody>
-          {completedTaskRows.length > 0 ? completedTaskRows : (
-            <tr>
-              <td colSpan="2">No completed tasks.</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      {tasks.length === 0 ? (
+        <p>No tasks available.</p>
+      ) : (
+        <ul>
+          {tasks.map((task, index) => (
+            <li key={index}>
+              <span>{task.taskName} (Priority: {task.priority})</span>
+              {!task.completed && (
+                <button onClick={() => markAsDone(index)}>Mark as Done</button>
+              )}
+              {task.completed && <span>Completed by {task.completedBy}</span>}
+            </li>
+          ))}
+        </ul>
+      )}
     </main>
   );
 }
