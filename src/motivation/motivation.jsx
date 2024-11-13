@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './motivation.css';
 
 export function Motivation() {
-  const [quote, setQuote] = React.useState('Loading...');
-  const [quoteAuthor, setQuoteAuthor] = React.useState('unknown');
+  const [quote, setQuote] = useState('Loading...');
+  const [quoteAuthor, setQuoteAuthor] = useState('unknown');
 
-
-
-  React.useEffect(() => {
-    setQuote('If you believe it will work, you\'ll see opportunities. If you believe it won\'t, you will see obstacles.');
-    setQuoteAuthor('Wayne Dyer');
-}, []);
+  useEffect(() => {
+    fetch('http://localhost:3000/api/quote')
+      .then(response => response.json())
+      .then(data => {
+        setQuote(data.quoteText || 'No quote available');
+        setQuoteAuthor(data.quoteAuthor || 'Unknown');
+      })
+      .catch(error => console.error('Error fetching quote:', error));
+  }, []);
 
   return (
     <main>
@@ -21,8 +24,8 @@ export function Motivation() {
       </p>
 
       <div id="motivational-quote">
-      <p className='quote'>{quote}</p>
-      <p className='author'>{quoteAuthor}</p>
+        <p className='quote'>"{quote}"</p>
+        <p className='author'>- {quoteAuthor}</p>
       </div>
     </main>
   );

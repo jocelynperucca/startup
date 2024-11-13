@@ -1,4 +1,5 @@
 const express = require('express');
+const axios = require('axios');
 const app = express();
 const uuid = require('uuid');
 const cors = require('cors');
@@ -23,6 +24,16 @@ app.get('/', (req, res) => {
 apiRouter.get('/tasks', (_req, res) => {
   res.send(tasks);
 });
+
+app.get('/api/quote', async (req, res) => {
+    try {
+      const response = await axios.get('https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en');
+      res.json(response.data);
+    } catch (error) {
+      console.error('Error fetching quote:', error.message);
+      res.status(500).json({ error: 'Failed to fetch quote from Forismatic API' });
+    }
+  });
 
 // Define route to add a new task
 apiRouter.post('/tasks', (req, res) => {
