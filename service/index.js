@@ -4,6 +4,7 @@ const app = express();
 const uuid = require('uuid');
 const cors = require('cors');
 app.use(express.static('public'));
+
 app.use(cors());
 
 let users = {};
@@ -63,34 +64,7 @@ apiRouter.put('/tasks/:id', (req, res) => {
       res.status(404).send({ error: 'Task not found' });
     }
   });
-  
-  
 
-// CreateAuth a new user
-apiRouter.post('/auth/create', async (req, res) => {
-  const user = users[req.body.email];
-  if (user) {
-    res.status(409).send({ msg: 'Existing user' });
-  } else {
-    const user = { email: req.body.email, password: req.body.password, token: uuid.v4() };
-    users[user.email] = user;
-
-    res.send({ token: user.token });
-  }
-});
-
-// GetAuth login an existing user
-apiRouter.post('/auth/login', async (req, res) => {
-  const user = users[req.body.email];
-  if (user) {
-    if (req.body.password === user.password) {
-      user.token = uuid.v4();
-      res.send({ token: user.token });
-      return;
-    }
-  }
-  res.status(401).send({ msg: 'Unauthorized' });
-});
 
 // DeleteAuth logout a user
 apiRouter.delete('/auth/logout', (req, res) => {
@@ -100,13 +74,6 @@ apiRouter.delete('/auth/logout', (req, res) => {
   }
   res.status(204).end();
 });
-
-app.post('/api/register', (req, res) => {
-    const { username, password } = req.body;
-    // Add logic to save user information (e.g., in a database)
-    res.status(200).json({ message: 'User registered successfully' });
-});
-
 
 // Start the server
 app.listen(port, () => {
