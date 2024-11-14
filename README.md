@@ -85,5 +85,7 @@ For this deliverable I added backend endpoints that recieve and post the tasks a
 
 - [X] **Node.js/Express HTTP service** - I did this with instructions from Simon Service and 
 created index.js with use of express using `const express = require('express');` and `const app = express();`.
-- [X] 
+- [X]  **Static middleware for frontend** - I did this also with instructions from Simon Service and used `app.use(express.static('public'));` to implement this.
+- []
+
 
