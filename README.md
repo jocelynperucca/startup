@@ -88,7 +88,7 @@ created index.js with use of express using `const express = require('express');`
 - [X]  **Static middleware for frontend** - I did this also with instructions from Simon Service and used `app.use(express.static('public'));` to implement this.
 - [X] **Third party service endpoints** - Using my backend, I called *forismatic.com/en/api* to use their most inspiring quotes and expressions api on my *motivation.jsx*. I called this from the front end on my *motivation.jsx* to make a random quote appear when the page is refreshed.
 - [X] **Backend service endpoints** - I implemented endpoints for my *addTask.jsx* and *taskList.jsx* to call the endpoints and store tasks when added from the addTask webpage. I also used backend service endpoints to update a task as completed when the checkbox "Done" is marked off and move it to a different table.
-- [X] **Frontend calls service endpoints** - I did this by using the fetch function for the third party API. I also used fetch functions in my *addTask.jsx* and *taskList.jsx* in order to retrieve stored tasks and shift arrays from listed to completed.
+- [X] **Frontend calls service endpoints** - I did this by using the `fetch` function for the third party API. I also used `fetch` functions in my *addTask.jsx* and *taskList.jsx* in order to retrieve stored tasks and shift arrays from listed to completed.
 
 
 
