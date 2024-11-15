@@ -7,7 +7,7 @@ export function TaskList({ userName }) {
 
   // Fetch tasks from the server
   useEffect(() => {
-    fetch('http://localhost:3000/api/tasks')
+    fetch('/api/tasks')
       .then(response => response.json())
       .then(data => {
         // Separate tasks into pending and completed
@@ -22,7 +22,7 @@ export function TaskList({ userName }) {
     const updatedTask = { ...task, completed: true, completedBy: userName };
 
     // Send a PUT request to update the task on the server
-    fetch(`http://localhost:3000/api/tasks/${task.id}`, {
+    fetch(`/api/tasks/${task.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

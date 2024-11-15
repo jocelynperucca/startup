@@ -16,7 +16,7 @@ export function AddTask({ userName, setTasks }) {
       console.log('New task being added:', newTask);
 
       // Send the new task to the backend API
-      fetch('http://localhost:3000/api/tasks', {
+      fetch('/api/tasks', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
