@@ -7,7 +7,7 @@ export function Motivation() {
 
   //Motivational quote API call
   useEffect(() => {
-    fetch('http://localhost:3000/api/quote')
+    fetch('/api/quote')
       .then(response => response.json())
       .then(data => {
         setQuote(data.quoteText || 'No quote available');
