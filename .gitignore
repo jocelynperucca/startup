@@ -1,3 +1,6 @@
 /node_modules
 /service/node_modules
 /mongoTest/node_modules
+/authTest/node_modules
+/node_modules
+/startup/node_modules
