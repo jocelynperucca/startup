@@ -90,5 +90,8 @@ created index.js with use of express using `const express = require('express');`
 - [X] **Backend service endpoints** - I implemented endpoints for my *addTask.jsx* and *taskList.jsx* to call the endpoints and store tasks when added from the addTask webpage. I also used backend service endpoints to update a task as completed when the checkbox "Done" is marked off and move it to a different table.
 - [X] **Frontend calls service endpoints** - I did this by using the `fetch` function for the third party API. I also used `fetch` functions in my *addTask.jsx* and *taskList.jsx* in order to retrieve stored tasks and shift arrays from listed to completed.
 
+## DB/Login Deliverable
 
+For this deliverable I implemented authorization for login and stored user information in the database. I also stored tasks and completed tasks in the database.
 
+- [X] MongoDB Atlas database created - done!
