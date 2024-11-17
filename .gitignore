@@ -6,4 +6,4 @@
 /startup/node_modules
 /mongoTest/dbConfig.json
 /authTest/dbConfig.json
-
+/service/dbConfig.json
