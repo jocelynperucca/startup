@@ -10,12 +10,17 @@ export function TaskList({ userName }) {
     fetch('/api/tasks')
       .then(response => response.json())
       .then(data => {
-        // Separate tasks into pending and completed, and get only the last 5 of each
-        setTasks(data.filter(task => !task.completed).slice(0, 5)); // Only last 5 pending tasks
-        setCompletedTasks(data.filter(task => task.completed).slice(0, 5)); // Only last 5 completed tasks
+        // Separate tasks into pending and completed
+        const pendingTasks = data.filter(task => !task.completed);
+        const completedTasks = data.filter(task => task.completed);
+  
+        // Slice to get only the last 5 tasks for each category
+        setTasks(pendingTasks.slice(0, 5)); // Only last 5 pending tasks
+        setCompletedTasks(completedTasks.slice(0, 5)); // Only last 5 completed tasks
       })
       .catch(error => console.error('Error fetching tasks:', error));
   }, []);
+  
   
 
   // Function to mark a task as done
