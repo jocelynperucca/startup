@@ -1,11 +1,17 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
+const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 const cors = require('cors');
 const db = require('./database'); // Import the database module
 app.use(express.static('public'));
+
+// Use the CORS middleware with the updated options
 app.use(cors());
+
+const authCookieName = 'token';
+
 
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -84,6 +90,64 @@ apiRouter.delete('/auth/logout', (req, res) => {
   // For now, we'll just return a 204 status since no DB operations for logout here
   res.status(204).end();
 });
+
+
+// CreateAuth token for a new user
+apiRouter.post('/auth/create', async (req, res) => {
+  if (await db.getUser(req.body.userName)) {
+    res.status(409).send({ msg: 'Existing user' });
+  } else {
+    const user = await db.createUser(req.body.userName, req.body.password);
+
+    // Set the cookie
+    setAuthCookie(res, user.token);
+
+    res.send({
+      id: user._id,
+    });
+  }
+});
+
+// GetAuth token for the provided credentials
+apiRouter.post('/auth/login', async (req, res) => {
+  const user = await db.getUser(req.body.userName);
+  if (user) {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      setAuthCookie(res, user.token);
+      res.send({ id: user._id });
+      return;
+    }
+  }
+  res.status(401).send({ msg: 'Unauthorized' });
+});
+
+// DeleteAuth token if stored in cookie
+apiRouter.delete('/auth/logout', (_req, res) => {
+  res.clearCookie(authCookieName);
+  res.status(204).end();
+});
+
+// secureApiRouter verifies credentials for endpoints
+const secureApiRouter = express.Router();
+apiRouter.use(secureApiRouter);
+
+secureApiRouter.use(async (req, res, next) => {
+  const authToken = req.cookies[authCookieName];
+  const user = await db.getUserByToken(authToken);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+});
+
+function setAuthCookie(res, authToken) {
+  res.cookie(authCookieName, authToken, {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'strict',
+  });
+}
 
 // Start the server
 app.listen(port, () => {
