@@ -66,8 +66,33 @@ async function updateTask(taskId, updatedTask) {
   }
 }
 
+function getUser(userName) {
+  return userCollection.findOne({ userName: userName });
+}
+
+function getUserByToken(token) {
+  return userCollection.findOne({ token: token });
+}
+
+async function createUser(userName, password) {
+  // Hash the password before we insert it into the database
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  const user = {
+    userName: userName,
+    password: passwordHash,
+    token: uuid.v4(),
+  };
+  await userCollection.insertOne(user);
+
+  return user;
+}
+
 module.exports = {
   getAllTasks,
   addTask,
   updateTask,
+  getUser,
+  getUserByToken,
+  createUser,
 };
