@@ -94,4 +94,6 @@ created index.js with use of express using `const express = require('express');`
 
 For this deliverable I implemented authorization for login and stored user information in the database. I also stored tasks and completed tasks in the database.
 
-- [X] MongoDB Atlas database created - done!
+- [X] **MongoDB Atlas database created** - done!
+- [X] **Stores application data in MongoDB** - Added tasks will be stored in database and when checked as completed, their "completed" id changes to true and moves to different table.
+
