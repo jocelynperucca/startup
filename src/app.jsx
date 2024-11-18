@@ -25,15 +25,6 @@ export default function App() {
     }
   };
 
-  // Fetch tasks on startup if authenticated
-  useEffect(() => {
-    if (authState === AuthState.Authenticated) {
-      fetch('http://localhost:3000/api/tasks')
-        .then(response => response.json())
-        .then(data => setTasks(data))
-        .catch(error => console.error('Error fetching tasks:', error));
-    }
-  }, [authState]);
 
   const markAsDone = (index) => {
     const task = tasks[index];
