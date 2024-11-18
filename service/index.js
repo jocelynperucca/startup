@@ -3,14 +3,10 @@ const axios = require('axios');
 const app = express();
 const uuid = require('uuid');
 const cors = require('cors');
+const db = require('./database'); // Import the database module
 app.use(express.static('public'));
-
 app.use(cors());
 
-let users = {};
-let tasks = [];
-
-//set port
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
 app.use(express.json());
@@ -22,56 +18,70 @@ app.get('/', (req, res) => {
   res.send({ msg: 'Welcome to the Startup Service!' });
 });
 
-// Define route to get all tasks
-apiRouter.get('/tasks', (_req, res) => {
-  res.send(tasks);
+// Define route to get all tasks (fetch from the database)
+apiRouter.get('/tasks', async (req, res) => {
+  try {
+    const tasks = await db.getAllTasks();  // Fetch tasks from the database
+    res.send(tasks);  // Respond with the tasks
+  } catch (err) {
+    console.error('Error fetching tasks:', err.message);
+    res.status(500).send({ error: 'Failed to fetch tasks' });
+  }
 });
 
-//motivational quote api
+// Motivational quote API
 app.get('/api/quote', async (req, res) => {
-    try {
-      const response = await axios.get('https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en');
-      res.json(response.data);
-    } catch (error) {
-      console.error('Error fetching quote:', error.message);
-      res.status(500).json({ error: 'Failed to fetch quote from Forismatic API' });
-    }
-  });
+  try {
+    const response = await axios.get('https://api.forismatic.com/api/1.0/?method=getQuote&format=json&lang=en');
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching quote:', error.message);
+    res.status(500).json({ error: 'Failed to fetch quote from Forismatic API' });
+  }
+});
 
 // Define route to add a new task
-apiRouter.post('/tasks', (req, res) => {
-    const newTask = req.body; // Expecting task object in the request body
-    if (newTask && newTask.taskName && newTask.priority && newTask.userName) {
-      newTask.id = uuid.v4(); // Generate a unique ID for the task
-      newTask.completed = false; // Add default properties
-      tasks.push(newTask); // Store the task in the array
-      res.status(201).send(newTask); // Respond with the created task
-    } else {
-      res.status(400).send({ error: 'Invalid task data' });
-    }
-  });
+apiRouter.post('/tasks', async (req, res) => {
+  const newTask = req.body; // Expecting task object in the request body
+  if (newTask && newTask.taskName && newTask.priority && newTask.userName) {
+    newTask.id = uuid.v4(); // Generate a unique ID for the task
+    newTask.completed = false; // Set default 'completed' to false
 
- // Update task status to completed
-apiRouter.put('/tasks/:id', (req, res) => {
-    const taskId = req.params.id;
-    const updatedTask = req.body;
-  
-    const taskIndex = tasks.findIndex(task => task.id === taskId);
-    if (taskIndex !== -1) {
-      tasks[taskIndex] = updatedTask; // Update the task in the tasks array
-      res.send(updatedTask); // Send back the updated task
+    try {
+      // Insert task into the database
+      const insertedTask = await db.addTask(newTask);
+      res.status(201).send(insertedTask);  // Send back the created task
+    } catch (err) {
+      console.error('Error adding task:', err.message);
+      res.status(500).send({ error: 'Failed to add task' });
+    }
+  } else {
+    res.status(400).send({ error: 'Invalid task data' });
+  }
+});
+
+// Define route to update task status (fetch from the database)
+apiRouter.put('/tasks/:id', async (req, res) => {
+  const taskId = req.params.id;
+  const updatedTask = req.body;
+
+  try {
+    // Update the task in the database
+    const task = await db.updateTask(taskId, updatedTask);
+    if (task) {
+      res.send(task);  // Send back the updated task
     } else {
       res.status(404).send({ error: 'Task not found' });
     }
-  });
-
-
-// DeleteAuth logout a user
-apiRouter.delete('/auth/logout', (req, res) => {
-  const user = Object.values(users).find((u) => u.token === req.body.token);
-  if (user) {
-    delete user.token;
+  } catch (err) {
+    console.error('Error updating task:', err.message);
+    res.status(500).send({ error: 'Failed to update task' });
   }
+});
+
+// DeleteAuth logout a user (to be handled by db)
+apiRouter.delete('/auth/logout', (req, res) => {
+  // For now, we'll just return a 204 status since no DB operations for logout here
   res.status(204).end();
 });
 

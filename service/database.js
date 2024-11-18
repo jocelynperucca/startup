@@ -5,9 +5,9 @@ const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
-const db = client.db('simon');
+const db = client.db('prioritask');
 const userCollection = db.collection('user');
-const scoreCollection = db.collection('score');
+const taskCollection = db.collection('tasks');
 
 // Test the database connection
 (async function testConnection() {
@@ -18,48 +18,48 @@ const scoreCollection = db.collection('score');
   process.exit(1);
 });
 
-// Fetch a user by username
-function getUser(username) {
-  return userCollection.findOne({ username: username });
+// Fetch all tasks
+async function getAllTasks() {
+  try {
+    const cursor = taskCollection.find({});  // Empty filter to get all tasks
+    return await cursor.toArray();  // Convert cursor to an array of tasks
+  } catch (err) {
+    console.error('Error fetching tasks from database:', err.message);
+    throw new Error('Unable to fetch tasks');
+  }
 }
 
-// Fetch a user by token
-function getUserByToken(token) {
-  return userCollection.findOne({ token: token });
+// Add a new task
+async function addTask(task) {
+  try {
+    const result = await taskCollection.insertOne(task);
+    return result.ops[0];  // Return the inserted task
+  } catch (err) {
+    console.error('Error adding task to database:', err.message);
+    throw new Error('Unable to add task');
+  }
 }
 
-// Create a new user with a hashed password and a unique token
-async function createUser(username, password) {
-  const passwordHash = await bcrypt.hash(password, 10);
-
-  const user = {
-    username: username,
-    password: passwordHash,
-    token: uuid.v4(),
-  };
-  await userCollection.insertOne(user);
-
-  return user;
-}
-
-// Add a new score
-async function addScore(score) {
-  return scoreCollection.insertOne(score);
-}
-
-// Fetch high scores
-function getHighScores() {
-  const query = { score: { $gt: 0, $lt: 900 } };
-  const options = {
-    sort: { score: -1 },
-    limit: 10,
-  };
-  const cursor = scoreCollection.find(query, options);
-  return cursor.toArray();
+// Update a task by ID
+async function updateTask(taskId, updatedTask) {
+  try {
+    const result = await taskCollection.updateOne(
+      { id: taskId }, 
+      { $set: updatedTask }
+    );
+    if (result.matchedCount > 0) {
+      return updatedTask;  // Return the updated task
+    } else {
+      return null;  // No task found with this ID
+    }
+  } catch (err) {
+    console.error('Error updating task in database:', err.message);
+    throw new Error('Unable to update task');
+  }
 }
 
 module.exports = {
-  getUser,
-  getUserByToken,
-  createUser,
+  getAllTasks,
+  addTask,
+  updateTask,
 };
