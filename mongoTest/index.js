@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
 
+
 async function main() {
   // Connect to the database cluster
   const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;

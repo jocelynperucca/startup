@@ -33,7 +33,9 @@ async function getAllTasks() {
 async function addTask(task) {
   try {
     const result = await taskCollection.insertOne(task);
-    return result.ops[0];  // Return the inserted task
+    // Retrieve the task by its inserted ID
+    const insertedTask = await taskCollection.findOne({ _id: result.insertedId });
+    return insertedTask;  // Return the inserted task
   } catch (err) {
     console.error('Error adding task to database:', err.message);
     throw new Error('Unable to add task');
@@ -43,12 +45,18 @@ async function addTask(task) {
 // Update a task by ID
 async function updateTask(taskId, updatedTask) {
   try {
+    // Remove the _id from updatedTask to avoid modifying the immutable field
+    const { _id, ...taskUpdate } = updatedTask;
+
     const result = await taskCollection.updateOne(
       { id: taskId }, 
-      { $set: updatedTask }
+      { $set: taskUpdate }
     );
+
     if (result.matchedCount > 0) {
-      return updatedTask;  // Return the updated task
+      // Fetch and return the updated task
+      const updated = await taskCollection.findOne({ id: taskId });
+      return updated;
     } else {
       return null;  // No task found with this ID
     }
