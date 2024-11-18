@@ -131,15 +131,15 @@ apiRouter.delete('/auth/logout', (_req, res) => {
 const secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
 
-secureApiRouter.use(async (req, res, next) => {
-  const authToken = req.cookies[authCookieName];
-  const user = await db.getUserByToken(authToken);
-  if (user) {
-    next();
-  } else {
-    res.status(401).send({ msg: 'Unauthorized' });
-  }
-});
+// secureApiRouter.use(async (req, res, next) => {
+//   const authToken = req.cookies[authCookieName];
+//   const user = await db.getUserByToken(authToken);
+//   if (user) {
+//     next();
+//   } else {
+//     res.status(401).send({ msg: 'Unauthorized' });
+//   }
+// });
 
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
