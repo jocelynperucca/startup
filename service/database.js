@@ -4,10 +4,11 @@ const uuid = require('uuid');
 const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
-const client = new MongoClient(url);
-const db = client.db('prioritask');
+const client = new MongoClient(url, { tls: true, serverSelectionTimeoutMS: 3000, autoSelectFamily: false, });const db = client.db('prioritask');
 const userCollection = db.collection('user');
 const taskCollection = db.collection('tasks');
+
+
 
 // Test the database connection
 (async function testConnection() {

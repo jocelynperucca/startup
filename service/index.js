@@ -8,7 +8,7 @@ const db = require('./database'); // Import the database module
 app.use(express.static('public'));
 
 // Use the CORS middleware with the updated options
-app.use(cors());
+app.use(cors({origin: 'https://prioritask.click'}));
 
 const authCookieName = 'token';
 
@@ -126,20 +126,6 @@ apiRouter.delete('/auth/logout', (_req, res) => {
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
-
-// secureApiRouter verifies credentials for endpoints
-const secureApiRouter = express.Router();
-apiRouter.use(secureApiRouter);
-
-// secureApiRouter.use(async (req, res, next) => {
-//   const authToken = req.cookies[authCookieName];
-//   const user = await db.getUserByToken(authToken);
-//   if (user) {
-//     next();
-//   } else {
-//     res.status(401).send({ msg: 'Unauthorized' });
-//   }
-// });
 
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
