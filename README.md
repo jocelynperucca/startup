@@ -96,6 +96,6 @@ For this deliverable I implemented authorization for login and stored user infor
 
 - [X] **MongoDB Atlas database created** - done!
 - [X] **Stores application data in MongoDB** - Added tasks will be stored in database and when checked as completed, their "completed" id changes to true and moves to different table.
-- [X] **User registration**
-- [X] **Stores and retrieves credentials in MongoDB**
-- [X] **Restricts application functionality based on authentication**
+- [X] **User registration** - Added function for creating an account that is now stored in the database.
+- [X] **Stores and retrieves credentials in MongoDB** - After registration, the username and password are stored in MongoDB and can be reused to log in later. It also stores tasks and completed tasks in MongoDB.
+- [X] **Restricts application functionality based on authentication** - Users cannot access the task list nor add a task until logged in and authenticated.
