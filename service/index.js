@@ -8,7 +8,7 @@ const db = require('./database'); // Import the database module
 app.use(express.static('public'));
 
 // Use the CORS middleware with the updated options
-app.use(cors({origin: 'https://prioritask.click'}));
+app.use(cors());
 
 const authCookieName = 'token';
 
@@ -126,6 +126,7 @@ apiRouter.delete('/auth/logout', (_req, res) => {
   res.clearCookie(authCookieName);
   res.status(204).end();
 });
+
 
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {

@@ -11,16 +11,11 @@ export function TaskList({ userName }) {
       .then(response => response.json())
       .then(data => {
         // Separate tasks into pending and completed
-        const pendingTasks = data.filter(task => !task.completed);
-        const completedTasks = data.filter(task => task.completed);
-  
-        // Slice only the last 5 completed tasks
-        setTasks(pendingTasks); // No slicing for pending tasks
-        setCompletedTasks(completedTasks.slice(-5)); // Only the last 5 completed tasks
+        setTasks(data.filter(task => !task.completed));
+        setCompletedTasks(data.filter(task => task.completed));
       })
       .catch(error => console.error('Error fetching tasks:', error));
   }, []);
-  
 
   // Function to mark a task as done
   const markAsDone = (task) => {
