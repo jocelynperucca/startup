@@ -7,3 +7,4 @@
 /mongoTest/dbConfig.json
 /authTest/dbConfig.json
 /service/dbConfig.json
+/testWebSocket/node_modules
