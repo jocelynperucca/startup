@@ -4,7 +4,7 @@ import { Login } from './login/login';
 import { AddTask } from './addTask/addTask';
 import { TaskList } from './taskList/taskList';
 import { Motivation } from './motivation/motivation';
-import { WebSocketChat } from './chat/chatClient'
+import { WebSocketChat } from './chat/chat'
 import { AuthState } from './login/authState';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';

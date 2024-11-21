@@ -103,5 +103,5 @@ For this deliverable I implemented authorization for login and stored user infor
 ## WebSocket deliverable
 - [X] **Backend listens for WebSocket connection** - done with chat page! I added a websocket into my `index.js` and made another react component called chatClient.
 - [X] **Frontend makes WebSocket connection** - it says it does on the page, done! Through `chatClient.jsx` it calls on that websocket connection
-- [X] **Data sent over Websocket connection** - Chats are appearing on the other side
-- [X] **Websocket data displayed in the application**
+- [X] **Data sent over Websocket connection** - Chats are appearing on the other tab when sent!
+- [X] **Websocket data displayed in the application** - Through the chatClient
