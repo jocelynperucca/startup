@@ -101,7 +101,7 @@ For this deliverable I implemented authorization for login and stored user infor
 - [X] **Restricts application functionality based on authentication** - Users cannot access the task list nor add a task until logged in and authenticated.
 
 ## WebSocket deliverable
-- [X] **Backend listens for WebSocket connection**
-- [X] **Frontend makes WebSocket connection**
-- [X] **Data sent over Websocket connection**
+- [X] **Backend listens for WebSocket connection** - done with chat page! I added a websocket into my `index.js` and made another react component called chatClient.
+- [X] **Frontend makes WebSocket connection** - it says it does on the page, done! Through `chatClient.jsx` it calls on that websocket connection
+- [X] **Data sent over Websocket connection** - Chats are appearing on the other side
 - [X] **Websocket data displayed in the application**
