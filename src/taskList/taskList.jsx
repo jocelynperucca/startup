@@ -99,7 +99,7 @@ export function TaskList({ userName }) {
         </tbody>
       </table>
 
-      <h2>Completed Tasks (Latest 5)</h2>
+      <h2>Completed Tasks (Latest 10)</h2>
       <table className="CompletedTasks">
         <thead>
           <tr>
