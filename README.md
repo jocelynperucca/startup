@@ -99,3 +99,9 @@ For this deliverable I implemented authorization for login and stored user infor
 - [X] **User registration** - Added function for creating an account that is now stored in the database.
 - [X] **Stores and retrieves credentials in MongoDB** - After registration, the username and password are stored in MongoDB and can be reused to log in later. It also stores tasks and completed tasks in MongoDB.
 - [X] **Restricts application functionality based on authentication** - Users cannot access the task list nor add a task until logged in and authenticated.
+
+## WebSocket deliverable
+- [X] **Backend listens for WebSocket connection**
+- [X] **Frontend makes WebSocket connection**
+- [X] **Data sent over Websocket connection**
+- [X] **Websocket data displayed in the application**
