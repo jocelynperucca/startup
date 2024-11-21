@@ -4,6 +4,7 @@ import { Login } from './login/login';
 import { AddTask } from './addTask/addTask';
 import { TaskList } from './taskList/taskList';
 import { Motivation } from './motivation/motivation';
+import { WebSocketChat } from './chat/chatClient'
 import { AuthState } from './login/authState';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './app.css';
@@ -62,6 +63,9 @@ export default function App() {
                       <NavLink className='nav-link' to='/motivation'>Motivation</NavLink>
                     </li>
                     <li className='nav-item mx-2'>
+                      <NavLink className='nav-link' to='/chat'>Chat</NavLink>
+                    </li>
+                    <li className='nav-item mx-2'>
                       <button
                         className='nav-link btn btn-link'
                         onClick={() => onAuthChange('', AuthState.Unauthenticated)}>
@@ -98,6 +102,10 @@ export default function App() {
             <Route
               path='/motivation'
               element={authState === AuthState.Authenticated ? <Motivation /> : <Navigate to="/" replace />}
+            />
+            <Route
+              path='/chat'
+              element={authState === AuthState.Authenticated ? <WebSocketChat /> : <Navigate to="/" replace />}
             />
             <Route path='*' element={<NotFound />} />
           </Routes>

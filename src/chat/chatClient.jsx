@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './main.css'; // Assuming this is your CSS file
 
-const WebSocketChat = () => {
+export function WebSocketChat() {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [chatMessages, setChatMessages] = useState([]);
@@ -102,6 +101,5 @@ const WebSocketChat = () => {
       {!connected && <p>WebSocket is disconnected</p>}
     </div>
   );
-};
+}
 
-export default WebSocketChat;
