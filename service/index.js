@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 const cors = require('cors');
 const { WebSocketServer } = require('ws');
+const http = require('http'); // Import http module
 const db = require('./database'); // Import the database module
 app.use(express.static('public'));
 
@@ -91,7 +92,6 @@ apiRouter.delete('/auth/logout', (req, res) => {
   res.status(204).end();
 });
 
-
 // CreateAuth token for a new user
 apiRouter.post('/auth/create', async (req, res) => {
   if (await db.getUser(req.body.userName)) {
@@ -127,7 +127,6 @@ apiRouter.delete('/auth/logout', (_req, res) => {
   res.status(204).end();
 });
 
-
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
     secure: true,
@@ -137,6 +136,8 @@ function setAuthCookie(res, authToken) {
 }
 
 // Create a websocket object
+const server = http.createServer(app);  // Create the HTTP server
+
 const wss = new WebSocketServer({ noServer: true });
 
 // Handle the protocol upgrade from HTTP to WebSocket
@@ -192,6 +193,6 @@ setInterval(() => {
 }, 10000);
 
 // Start the server
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
