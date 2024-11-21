@@ -2,7 +2,7 @@
 ## Specification Deliverable
 
 ### Elevator Pitch <br/>
-Whether you have just moved out to go to college, just gotten married, or whatever it may be, there always seems to arise challenges when living with one or more people! Working out what needs to get done whether that be groceries, chores, events, or other to-do items, and especially how quickly they need to get done is just one of those. With *PrioriTask*, a group of 2 or more people can add items that need to get done and how high of a priority it is with a three-level system (low, medium, high) that will display the items from highest to lowest. As each person in the group adds tasks, they will appear on the other members lists so that any person can do and mark them off when done. With this system, no task will be forgotten and will **assure** that everyones needs are seen! <br/>
+Whether you have just moved out to go to college, just gotten married, or whatever it may be, there always seems to arise challenges when living with one or more people! Working out what needs to get done whether that be groceries, chores, events, or other to-do items, and especially how quickly they need to get done is just one of those. With *PrioriTask*, a group of 2 or more people can add items that need to get done and how high of a priority it is with a three-level system (low, medium, high) that will display the items from highest to lowest. As each person in the group adds tasks, they will appear on the other members lists so that any person can do and mark them off when done. With this system, no task will be forgotten and will **ensure** that everyones needs are seen! <br/>
 
 ### Design
 ![PrioriTask](/FINALDESIGN.jpg)
@@ -27,14 +27,14 @@ User login/register in order to store name to show who has added the task.
 - **Database data:**
 As users submit names it will store that info, stores who added each task, cannot see or complete any of the tasks unless logged in.
 - **WebSocket data:**
-As users submit tasks and their priority level, these tasks are shown to all users
+As users submit tasks and their priority level, these tasks are shown to all users, chat page added to talk to other users about tasks in real time.
 
 ### Key Features
 - Secure login to prevent random tasks added
 - Capacity to write and submit a task
 - Add task priority 
 - Display tasks in priority order
-- Tasks are constantly updated and shown in real time
+- Chat function to talk about tasks in real time
 - Allows authenticated user to mark any task as done
 
 
@@ -101,6 +101,9 @@ For this deliverable I implemented authorization for login and stored user infor
 - [X] **Restricts application functionality based on authentication** - Users cannot access the task list nor add a task until logged in and authenticated.
 
 ## WebSocket deliverable
+
+For this deliverable I implemented WebSocket to make a chat funciton to talk about tasks and their completion or things to be done in real time!
+
 - [X] **Backend listens for WebSocket connection** - done with chat page! I added a websocket into my `index.js` and made another react component called chat.
 - [X] **Frontend makes WebSocket connection** - it says it does on the page, done! Through `chat.jsx` it calls on that websocket connection
 - [X] **Data sent over Websocket connection** - Chats are appearing on the other tab when sent!
