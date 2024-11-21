@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
+import './main.css';
+
 
 export function WebSocketChat() {
   const [name, setName] = useState('');
@@ -102,4 +104,5 @@ export function WebSocketChat() {
     </div>
   );
 }
+
 
