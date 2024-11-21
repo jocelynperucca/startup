@@ -12,14 +12,24 @@ export function TaskList({ userName }) {
       .then(data => {
         // Separate tasks into pending and completed
         setTasks(data.filter(task => !task.completed));
-        setCompletedTasks(data.filter(task => task.completed));
+        setCompletedTasks(
+          data
+            .filter(task => task.completed)
+            .sort((a, b) => new Date(b.completedDate || 0) - new Date(a.completedDate || 0)) // Sort by completedDate (default to 0 if undefined)
+            .slice(0, 10) // Take only the latest 5 completed tasks
+        );
       })
       .catch(error => console.error('Error fetching tasks:', error));
   }, []);
 
   // Function to mark a task as done
   const markAsDone = (task) => {
-    const updatedTask = { ...task, completed: true, completedBy: userName };
+    const updatedTask = {
+      ...task,
+      completed: true,
+      completedBy: userName,
+      completedDate: new Date().toISOString(), // Add the current date/time
+    };
 
     // Send a PUT request to update the task on the server
     fetch(`/api/tasks/${task.id}`, {
@@ -33,7 +43,11 @@ export function TaskList({ userName }) {
       .then(() => {
         // Update the local state to reflect the changes
         setTasks(tasks.filter(t => t.id !== task.id)); // Remove from pending tasks
-        setCompletedTasks(prevCompleted => [...prevCompleted, updatedTask]); // Add to completed tasks
+        setCompletedTasks(prevCompleted =>
+          [...prevCompleted, updatedTask]
+            .sort((a, b) => new Date(b.completedDate || 0) - new Date(a.completedDate || 0)) // Sort by completedDate (default to 0 if undefined)
+            .slice(0, 10) // Keep only the latest 5
+        );
       })
       .catch(error => console.error('Error updating task:', error));
   };
@@ -85,7 +99,7 @@ export function TaskList({ userName }) {
         </tbody>
       </table>
 
-      <h2>Completed Tasks</h2>
+      <h2>Completed Tasks (Latest 5)</h2>
       <table className="CompletedTasks">
         <thead>
           <tr>
