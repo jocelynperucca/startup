@@ -66,6 +66,7 @@ export function WebSocketChat() {
 
   return (
     <div>
+        <legend>Chat with your friends about your tasks!</legend>
       <div className="name">
         <fieldset id="name-controls">
           <legend>My Name</legend>
